@@ -3,13 +3,13 @@ from .models import CustomUser, Post
 
 
 
-# class PostAdmin(admin.ModelAdmin):
-#     list_display = ('author', 'test', 'post_dt')
-#
-# admin.site.register(Post, PostAdmin)
-#
-#
-# class CustomUserAdmin(admin.ModelAdmin):
-#     list_display = ('about', 'phone', 'address', 'avatar')
-#
-# admin.site.register(CustomUser, CustomUserAdmin)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('author', 'test', 'post_dt')
+
+admin.site.register(Post, PostAdmin)
+
+
+class CustomUserAdmin(admin.ModelAdmin):
+    list_display = ('about', 'phone', 'address', 'avatar')
+
+admin.site.register(CustomUser, CustomUserAdmin)
