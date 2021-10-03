@@ -8,5 +8,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('djoser.urls')),
     re_path(r'^auth/', include('djoser.urls.authtoken')),
-    path('user/', CurrentUserView.as_view())
+    path('user/', CurrentUserView.as_view()),
+    path('change user/', UserViewSet.as_view())
 ]
