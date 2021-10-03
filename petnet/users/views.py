@@ -1,11 +1,14 @@
-from django.contrib.auth import login
 from .models import CustomUser, Post
-from django.views import View
 from django.shortcuts import render, redirect
 from django.views import View
+from rest_framework import viewsets
+from .serializer import PostSerializer
+
+
 
 __all__ = [
-    'Posts'
+    'Posts',
+    'UsersPost'
 ]
 
 
@@ -23,3 +26,8 @@ class Posts(View):
             text=request.POST['text']
         )
         return self.get(request, user_id)
+
+
+class UsersPost(viewsets.ModelViewSet):
+    queryset = Post.objects.all().order_by('-post_dt')
+    serializer_class = PostSerializer
