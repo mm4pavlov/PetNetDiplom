@@ -1,3 +1,16 @@
 from django.contrib import admin
+from ..contacts.models import Contact
+from ..aboutus.models import Aboutus
 
-# Register your models here.
+class Contact(admin.ModelADmin):
+    list_display = ['email', 'phone', 'address']
+
+
+admin.site.register(Contact)
+
+
+class Aboutus(admin.ModelADmin):
+    list_display = ['email', 'phone', 'address']
+
+
+admin.site.register(Aboutus)
