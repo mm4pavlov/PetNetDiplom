@@ -3,6 +3,10 @@ from .models import CustomUser, Post
 from django.views import View
 from django.shortcuts import render, redirect
 from django.views import View
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializers import UserSerializer
+
 
 __all__ = [
     'Posts'
@@ -23,3 +27,9 @@ class Posts(View):
             text=request.POST['text']
         )
         return self.get(request, user_id)
+      
+      
+class CurrentUserView(APIView):
+    def get(self, request):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
