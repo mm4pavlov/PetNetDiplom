@@ -2,7 +2,9 @@ from .models import CustomUser, Post
 from django.shortcuts import render, redirect
 from django.views import View
 from rest_framework import viewsets
-from .serializer import PostSerializer
+from .serializer import PostSerializer, UserSerializer
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
 
@@ -31,3 +33,9 @@ class Posts(View):
 class UsersPost(viewsets.ModelViewSet):
     queryset = Post.objects.all().order_by('-post_dt')
     serializer_class = PostSerializer
+
+
+class CurrentUserView(APIView):
+    def get(self, request):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
