@@ -13,14 +13,3 @@ class CustomUser(User):
     def get_friends(self):
         return ",".join([str(p) for p in self.friends.all()])
 
-
-class Post(models.Model):
-    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name='Author')
-    text = models.TextField(max_length='1200', verbose_name='Post text')
-    post_dt = models.DateField(auto_now=True, verbose_name='Post created time')
-
-    def __str__(self):
-        return f"{self.author}'s post created at {self.post_dt}"
-
-    class Meta:
-        ordering = ('-post_dt',)
