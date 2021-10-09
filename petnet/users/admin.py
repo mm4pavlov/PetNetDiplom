@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CustomUser, Post
+from .models import User
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -14,3 +14,8 @@ class CustomUserAdmin(admin.ModelAdmin):
 
 
 admin.site.register(CustomUser, CustomUserAdmin)
+
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ['id', 'username', 'avatar']
