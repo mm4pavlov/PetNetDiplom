@@ -1,15 +1,16 @@
-from django.contrib.auth import login
 from .models import CustomUser, Post
-from django.views import View
 from django.shortcuts import render, redirect
 from django.views import View
+from rest_framework import viewsets
+from .serializer import PostSerializer, UserSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import UserSerializer
 
-
-
-
+__all__ = [
+    'Posts',
+    'UsersPost',
+    'CurrentUserView'
+]
 
 class Posts(View):
     def get(self, request, user_id):
@@ -25,8 +26,13 @@ class Posts(View):
             text=request.POST['text']
         )
         return self.get(request, user_id)
+
       
-      
+class UsersPost(viewsets.ModelViewSet):
+    queryset = Post.objects.all().order_by('-post_dt')
+    serializer_class = PostSerializer
+
+    
 class CurrentUserView(APIView):
     def get(self, request):
         serializer = UserSerializer(request.user)
