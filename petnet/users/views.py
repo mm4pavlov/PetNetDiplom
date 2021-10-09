@@ -6,13 +6,11 @@ from .serializer import PostSerializer, UserSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-
-
 __all__ = [
     'Posts',
-    'UsersPost'
+    'UsersPost',
+    'CurrentUserView'
 ]
-
 
 class Posts(View):
     def get(self, request, user_id):
@@ -29,12 +27,12 @@ class Posts(View):
         )
         return self.get(request, user_id)
 
-
+      
 class UsersPost(viewsets.ModelViewSet):
     queryset = Post.objects.all().order_by('-post_dt')
     serializer_class = PostSerializer
 
-
+    
 class CurrentUserView(APIView):
     def get(self, request):
         serializer = UserSerializer(request.user)
