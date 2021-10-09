@@ -8,9 +8,7 @@ from rest_framework.views import APIView
 from .serializers import UserSerializer
 
 
-__all__ = [
-    'Posts'
-]
+
 
 
 class Posts(View):
